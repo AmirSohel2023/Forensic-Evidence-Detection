@@ -11,6 +11,7 @@ interface Detection {
   forensicSignificance: string;
 }
 
+
 interface AnalysisResult {
   detections: Detection[];
   imageUrl: string;
