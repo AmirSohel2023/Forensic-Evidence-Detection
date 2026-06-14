@@ -1,7 +1,7 @@
 flask
 flask-cors
-ultralytics
-opencv-python
 gunicorn
-
+werkzeug
+opencv-python-headless
+ultralytics
 # pip install -r requirements.txt
