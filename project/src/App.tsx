@@ -46,7 +46,7 @@ function App() {
     const formData = new FormData();
     formData.append("file", file);
 
-    const response = await fetch("http://127.0.0.1:5000//predict", {
+    const response = await fetch("https://forensic-evidence-detection.onrender.com/predict", {
       method: "POST",
       body: formData,
     });
