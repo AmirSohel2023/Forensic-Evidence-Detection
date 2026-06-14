@@ -89,7 +89,14 @@ from uuid import uuid4
 # App initialization
 # ------------------------
 app = Flask(__name__)
-CORS(app, origins=["https://forensic-evidence-detection.vercel.app"])
+CORS(
+    app,
+    resources={r"/*": {"origins": [
+        "https://forensic-evidence-detection.vercel.app",
+        "http://localhost:5173"
+    ]}},
+    supports_credentials=True
+)
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -144,7 +151,7 @@ def home():
 # ------------------------
 # Prediction API
 # ------------------------
-@app.route("/predict", methods=["POST"])
+@app.route("/predict", methods=["POST", "OPTIONS"])
 def predict():
 
     if "file" not in request.files:
