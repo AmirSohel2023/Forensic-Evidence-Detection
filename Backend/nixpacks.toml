@@ -1,0 +1,10 @@
+[phases.setup]
+nixPkgs = ["libxcb", "libGL"]
+
+[phases.install]
+cmds = [
+  "pip install flask flask-cors gunicorn werkzeug",
+  "pip install opencv-python-headless",
+  "pip install ultralytics --no-deps",
+  "pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu"
+]
