@@ -76,7 +76,7 @@
 
 
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 from ultralytics import YOLO
 from werkzeug.utils import secure_filename
@@ -89,14 +89,14 @@ from uuid import uuid4
 # App initialization
 # ------------------------
 app = Flask(__name__)
-CORS(
-    app,
-    resources={r"/*": {"origins": [
-        "https://forensic-evidence-detection.vercel.app",
-        "http://localhost:5173"
-    ]}},
-    supports_credentials=True
-)
+CORS(app)
+
+@app.after_request
+def after_request(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
+    response.headers.add("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+    return response
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -153,6 +153,8 @@ def home():
 # ------------------------
 @app.route("/predict", methods=["POST", "OPTIONS"])
 def predict():
+    if request.method == "OPTIONS":
+        return make_response("", 200)
 
     if "file" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
