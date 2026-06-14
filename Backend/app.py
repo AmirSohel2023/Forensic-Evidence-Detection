@@ -89,7 +89,7 @@ from uuid import uuid4
 # App initialization
 # ------------------------
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://forensic-evidence-detection.vercel.app"])
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
