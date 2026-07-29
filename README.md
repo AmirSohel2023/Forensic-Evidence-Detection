@@ -8,6 +8,10 @@
 
 The system automatically detects potential forensic evidence such as weapons, blood stains, biological traces, and other suspicious objects from uploaded images or live camera feeds. It then generates detailed forensic analysis reports to support crime scene investigations.
 
+ Live Demo: https://yolo-ai-crimescene-analysis.netlify.app
+
+
+
 ---
 
 ## Key Features
